@@ -1,0 +1,7 @@
+INSERT OVERWRITE DIRECTORY '/demo/FlightDelayData/output'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+SELECT regexp_replace(origin_city_name, '''', ''),
+    avg(weather_delay)
+FROM flightdelay
+WHERE weather_delay IS NOT NULL
+GROUP BY origin_city_name;
